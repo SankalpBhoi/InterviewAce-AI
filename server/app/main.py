@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers.auth import router as auth_router
 from app.database.database import db
+from app.routers import resume
+
 
 app = FastAPI(
     title="InterviewAce AI API",
@@ -34,3 +36,5 @@ def health():
         "status": "healthy",
         "database": db.name
     }
+    
+app.include_router(resume.router)
